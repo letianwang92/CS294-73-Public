@@ -12,14 +12,12 @@
 
      Note that F includes the customary factor of dT in the RK4 algorithm. (i.e. this algorithm assumes k_i = F(...) NOT k_i = dt*F(...)
 */
-template <class X, class F, class dX>
+template <class X, class F>
 class RK4
 {
 public:
   void advance(double a_time, double a_dt, X& a_state);
 protected:
-  dX m_k; 
-  dX m_delta;
   F m_f;
 };
 
@@ -27,28 +25,9 @@ protected:
 
 
 
-template <class X, class F, class dX>
-void RK4<X, F, dX>::advance(double a_time, double a_dt, X& a_state)
+template <class X, class F>
+void RK4<X, F>::advance(double a_time, double a_dt, X& a_state)
 {
-  // this looks odd, but it is a common programming error
-  //  you can't write "1/6* m_k"; and get what you want.  the first
-  // term is evaluated as integer division, resulting in a zero.
-  double sixth = 1, third=1, half = 1;
-  sixth/=6; third/=3; half/=2;
-  
-  m_delta.init(a_state);
-  m_k.init(a_state);
-  m_f(m_k, a_time, a_dt, a_state);  // compute k1
-  m_delta.increment(sixth, m_k);
-  m_k*=half;
-  m_f(m_k, a_time+half*a_dt, a_dt, a_state); // compute k2
-  m_delta.increment(third, m_k);
-  m_k*=half;
-  m_f(m_k, a_time+half*a_dt, a_dt, a_state);  // conpute k3
-  m_delta.increment(third, m_k);
-  m_f(m_k, a_time+a_dt, a_dt, a_state); // compute k4
-  m_delta.increment(sixth, m_k);
-  a_state.increment(m_delta);
 }
   
 #endif 
