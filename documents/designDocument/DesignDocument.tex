@@ -25,6 +25,20 @@ A 2nd order central difference scheme will be used for spatial discretization wh
 
 The final computational solution consists of time dependent phase field ($\phi$) and dimensionless temperature field ($u$) in the form of vtk files.
 
+\section{Algorithm and Flow Chart}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.65\textwidth]{flowchart_v_1} % Include the image placeholder.png
+\caption{Figure caption.}
+\end{center}
+\end{figure}
+        \par \ 
+        \par 1. Initialize the modeling parameter including: timestep dt,time t, grid dh, domain size L, etc.  Initialize the $\phi$ and $u$ field.
+        \par 2. During one step, we calculate the gradient and laplacian by 
+        \par 3. Calculate the orientation angle $\theta$, and then the $W$
+        \par 4. make RHS of $\phi$ euqation, update $\phi$ and then update $u$ by RK4
+        \par 5. Plot intermidiate time step contour of  $\phi$ and $u$
+  
 \section{Software Design}
 The following existing classes will be directly utilized:
 \begin{description}
