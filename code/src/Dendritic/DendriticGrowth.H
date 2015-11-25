@@ -11,14 +11,7 @@ class DendriticGrowth
 {
 public:
   DendriticGrowth();
-  void operator()(RectMDArray& a_phi,
-                  const Real& a_time, const Real& dt);
-};
-class DmtTemp
-{
-public:
-  DmtTemp();
-  void operator()(RectMDArray& a_T,
+  void operator()(RectMDArray& a_phi, RectMDArray& a_T,
                   const Real& a_time, const Real& dt);
 };
 #endif
