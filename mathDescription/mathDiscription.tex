@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{bm}
+\usepackage{amsmath}
+
+\title{Two-Dimensional Dendritic Growth Using Phase-Field Model \\ Mathematical Description}
+\date{2015-Nov-21}
+\author{}
+
+\begin{document}
+    \pagenumbering{arabic}
+    \maketitle
+    \section{Phenomenon to model}
+        The phenomenon that we model is the phase growth in a bulk of material which has two phases, e.g. the crystalization of water. Mathematical symbols that discribe the system are defined below.
+        \par \ 
+        \par 1. $t\in\Re$ is time.
+        \par 2. $\Omega\subset\Re^N$ is the spatial domain of the system, where $N$ is the spacial dimension of the system.
+        \par 3. $\bm{x}\in\Omega$ is the spatial coordinate of the system.
+        \par 4. $u:(\Omega,\Re)\mapsto\Re$ is a funtion that discribe the dimensionless temperature field.
+        \par 5. $\phi:(\Omega,\Re)\mapsto[0,1]$ is a funtion that discribe the phase field. $\phi(\bm{x},t)=0$ means that the material at time $t$ and position $\bm{x}$ is in phase I; $\phi(\bm{x},t)=1$ means that it is in phas II; $0<\phi(\bm{x},t)<1$ means it is a mixture of phase I and phase II.
+        \par 6. $C^2$ is the function space of any $\phi(\bm{x})$ that has continuous first 2 derivatives and satisfies required boundary condition.
+        
+    \section{Derivation of the governing equation}
+        In this section, we will derive the governing equation of a specific system. Consider $\Omega=[0,1]\times[0,1]$ with periodic boundary condition. The total free energy due to the phase field $\phi(\bm{x},t)$ is
+        \begin{equation}
+            F=\int f(\phi)+\frac{1}{2}W(\theta(\nabla\phi))^2|\nabla\phi|^2d\bm{x}.
+        \end{equation}
+        In the equation (1),
+        \begin{equation}
+            f(\phi)=\frac{\phi^4}{4}-(\frac{1}{2}-\frac{\tilde{n}}{3})\phi^3+(\frac{1}{4}-\frac{\tilde{n}}{2})\phi^2
+        \end{equation}
+        is the free energy density of bulk material, where $\tilde{n}=\frac{\beta}{\pi}tan^{-1}[\eta(u_m-u)]$, $\beta$ and $\eta$ are material parameters. In the equation (1),
+        \begin{equation}
+            W(\theta(\nabla\phi))=W_0(1+\mu cos(a_0(\theta-\theta_0)),
+        \end{equation}
+        where $\theta(\nabla\phi)$ is the angle between x-axis and $\nabla\phi$; $W_0, a_0$ and $ \theta_0$ are constants.
+        \par We assume that the phase field $\phi$ changes in the direction in $C^2$ in which the total free energy F decrease fastest. This means that
+        \begin{equation}
+            \tau\frac{\partial\phi}{\partial t}=-\frac{\delta F}{\delta\phi},
+        \end{equation}
+        where $\tau$ is a constant. The functional derivative in the right hand side of equation (4) could be solved by applying the divergence theorem and the periodic boundary condition, which gives
+        \begin{equation}
+            \begin{aligned}
+            \tau\frac{\partial \phi}{\partial t}=& \phi(1-\phi)(\phi-\frac{1}{2}+\tilde{n}(u)) - \frac{\partial}{\partial x}(WW'\frac{\partial\phi}{\partial y})\\ 
+                                                 & + \frac{\partial}{\partial y}(WW'\frac{\partial\phi}{\partial x}) + \nabla(W^2)\cdot\nabla\phi + W^2\nabla^2\phi. 
+            \end{aligned}
+        \end{equation}
+        The equation of dimensionless temperature change is
+        \begin{equation}
+            \frac{\partial u}{\partial t}=D\nabla^2u+\frac{1}{2}\frac{\partial\phi}{\partial t},
+        \end{equation}
+        where D is the thermal diffusion constant and the second term in the right hand side is the latent heat of phase transition.
+    \section{Governing equation in a compact form}
+        In this section, we write all the equations we need in a compact form.
+        \begin{equation}
+            \begin{cases}
+                 \frac{\partial u}{\partial t} =&D\nabla^2u+\frac{1}{2}\frac{\partial\phi}{\partial t} \\
+                 \tau\frac{\partial \phi}{\partial t} =&  \phi(1-\phi)(\phi-\frac{1}{2}+\tilde{n}(u)) - \frac{\partial}{\partial x}(WW'\frac{\partial\phi}{\partial y})\\
+                 &  + \frac{\partial}{\partial y}(WW'\frac{\partial\phi}{\partial x}) + \nabla(W^2)\cdot\nabla\phi + W^2\nabla^2\phi \\
+                 W = & W_0(1+\mu cos(a_0(\theta-\theta_0)) \\
+                 \theta = & tan^{-1}(\frac{\partial\phi}{\partial y}/\frac{\partial\phi}{\partial x}) + \pi(1-sign(\frac{\partial\phi}{\partial x})) 
+            \end{cases}
+        \end{equation}
+\end{document}
