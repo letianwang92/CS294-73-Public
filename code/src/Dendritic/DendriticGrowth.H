@@ -7,11 +7,33 @@
 #include "Box.H"
 #include "RectMDArray.H"
 using namespace std;
+
 class DendriticGrowth
 {
 public:
   DendriticGrowth();
-  void operator()(RectMDArray& a_phi, RectMDArray& a_T,
-                  const Real& a_time, const Real& dt);
+  // Evolve one step forward with RK 4
+  void stepForward(const Real& a_time, const Real& dt);
+  // Increase m_phiShift to m_phi and increase m_uShift to m_u
+  void increament();
+  // Increase m_phiShift and m_uShift
+  void increamentShift();
+
+private:
+  RectMDArray m_phi;
+  RectMDArray m_u;
+  RectMDArray m_phiShift;
+  RectMDArray m_uShift;
+  
+  //Constants
+  Real m_D;
+  Real m_tau;
+  Real m_beta;
+  Real m_eta;
+  Real m_um;
+  Real W_0;
+  Real m_mu;
+  Real m_a0;
+  Real m_theta0;
 };
 #endif
