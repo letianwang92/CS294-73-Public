@@ -20,6 +20,7 @@ public:
   void increamentShift();
 
 private:
+  
   RectMDArray m_phi;
   RectMDArray m_u;
   RectMDArray m_phiShift;
