@@ -14,10 +14,6 @@ public:
   DendriticGrowth();
   // Evolve one step forward with RK 4
   void stepForward(const Real& a_time, const Real& dt);
-  // Increase m_phiShift to m_phi and increase m_uShift to m_u
-  void increament();
-  // Increase m_phiShift and m_uShift
-  void increamentShift();
 
 private:
   
