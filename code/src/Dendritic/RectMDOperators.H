@@ -5,14 +5,14 @@ using namespace std;
 
 class RectMDOperators
 {
-/// This class is a set of operators that act on RectMDArray
+/// This class is a set of operators that act on RectMDArray and a given point
 public:
   // Laplacian operator
-  void getLaplacian(const RectMDArray<Real>& a_field, RectMDArray<Real>& a_laplacian, Real a_h) 
+  Real getLaplacian(const RectMDArray<Real>& a_field, Point a_p, Real a_h) 
   // Gradient operator
-  void getGradient(const RectMDArray<Real>& a_field, RectMDArray<array<Real, 2> >& a_gradient, Real a_h) 
+  array<Real,2> getGradient(const RectMDArray<Real>& a_field, Point a_p, Real a_h) 
   // Divergence operator
-  void getDivergence(const RectMDArray<array<Real, 2> >& a_vecField, RectMDArray<Real>& a_divergence, Real a_h) 
+  Real getDivergence(const RectMDArray<array<Real, 2> >& a_vecField, Point a_p, Real a_h) 
 
 };
 #endif
