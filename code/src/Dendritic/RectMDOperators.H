@@ -3,9 +3,10 @@
 #include "RectMDArray.H"
 using namespace std;
 
-class MDOperator
+class RectMDOperators
 {
 /// This class is a set of operators that act on RectMDArray
+public:
   // Laplacian operator
   void getLaplacian(const RectMDArray<Real>& a_field, RectMDArray<Real>& a_laplacian, Real a_h) 
   // Gradient operator

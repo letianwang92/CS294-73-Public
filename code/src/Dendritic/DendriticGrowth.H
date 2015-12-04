@@ -6,6 +6,8 @@
 #include <vector>
 #include "Box.H"
 #include "RectMDArray.H"
+#include "RectMDOperators.H"
+#include "RectMDRK4.H"
 using namespace std;
 
 class DendriticGrowth
@@ -18,8 +20,6 @@ public:
 private:
   // Calculate RHS
   void calcRHS();
-  // Calculate m_phiShift and m_uShift
-  void RK4();
   
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;
