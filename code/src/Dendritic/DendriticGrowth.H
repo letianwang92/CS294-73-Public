@@ -12,15 +12,20 @@ class DendriticGrowth
 {
 public:
   DendriticGrowth();
-  // Evolve one step forward with RK 4
+  // Evolve one step forward
   void stepForward(const Real& a_time, const Real& dt);
 
 private:
+  // Calculate RHS
+  void calcRHS();
+  // Calculate m_phiShift and m_uShift
+  void RK4();
   
-  RectMDArray m_phi;
-  RectMDArray m_u;
-  RectMDArray m_phiShift;
-  RectMDArray m_uShift;
+  RectMDArray<Real> m_phi;
+  RectMDArray<Real> m_u;
+  RectMDArray<Real> m_phiShift;
+  RectMDArray<Real> m_uShift;
+  RectMDArray<array<Real, 2> > m_RHS; //the first number in the array for phi; the second number for u
   
   //Constants
   Real m_D;
