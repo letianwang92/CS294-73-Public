@@ -1,1 +1,1 @@
-PowerItoI.o: ../../RectArray/PowerItoI.cpp ../../RectArray/PowerItoI.H
+PowerItoI.o: ../RectArray/PowerItoI.cpp ../RectArray/PowerItoI.H
