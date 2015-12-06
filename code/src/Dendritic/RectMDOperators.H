@@ -5,9 +5,9 @@
 #include "RectMDArray.H"
 using namespace std;
 
+/// This class is a set of operators that act on RectMDArray and a given point. All of the operators are dimension independent.
 class RectMDOperators
 {
-/// This class is a set of operators that act on RectMDArray and a given point. All of the operators are dimension independent.
 public:
   // Laplacian operator on a single point
   Real getLaplacian(const RectMDArray<Real>& a_field, const Point& a_p, Real a_h);
