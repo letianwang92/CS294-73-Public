@@ -16,13 +16,14 @@ class DendriticGrowth
 {
 public:
   DendriticGrowth();
- 
+  bool isDefined();
   // RHS
-  
   void operator()(DendriticShift& a_k, 
                      const Real& a_time, const Real& dt, 
                      Dendritic& a_state);
-  //Constants
+  
+  //Constant
+  Real m_h; // the unit cell distance
   Real m_D;
   Real m_tau;
   Real m_beta;

@@ -9,7 +9,7 @@
 #include "RectMDOperators.H"
 using namespace std;
 
-class Dendritic
+class Dendritic;
 class DendriticShift
 {
 public:
@@ -28,13 +28,13 @@ public:
   Dendritic();
   Dendritic(Box& a_box,RectMDArray<Real>& phi_int,RectMDArray<Real>& u_int);
   void increment(const DendriticShift& a_shift);
-
-private:
-
-  bool m_isInitialized;
+  bool m_isDefined;
   Box m_box;
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;
+
+  
+  
 
 };
 
