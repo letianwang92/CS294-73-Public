@@ -1,0 +1,83 @@
+\hypertarget{classBox}{}\section{Box Class Reference}
+\label{classBox}\index{Box@{Box}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classBox_a2b61d9eaf29e8f8aa2d29d89a19c6b7c}{}\hyperlink{classBox_a2b61d9eaf29e8f8aa2d29d89a19c6b7c}{Box} (const \hyperlink{classPoint}{Point} \&a\+\_\+low\+Corner, const \hyperlink{classPoint}{Point} \&a\+\_\+high\+Corner)\label{classBox_a2b61d9eaf29e8f8aa2d29d89a19c6b7c}
+
+\begin{DoxyCompactList}\small\item\em constructor for nontrivial \hyperlink{classBox}{Box}. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a54f52432a78be9bd16c396da95496798}{}\hyperlink{classBox_a54f52432a78be9bd16c396da95496798}{Box} (const \hyperlink{classBox}{Box} \&a\+\_\+\+Box)\label{classBox_a54f52432a78be9bd16c396da95496798}
+
+\begin{DoxyCompactList}\small\item\em copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{classBox_aa636abea0cb64dbbeab47ffd659ddd2f}{}\hyperlink{classBox}{Box} \hyperlink{classBox_aa636abea0cb64dbbeab47ffd659ddd2f}{operator$\ast$} (const \hyperlink{classBox}{Box} \&a\+\_\+right\+Box) const \label{classBox_aa636abea0cb64dbbeab47ffd659ddd2f}
+
+\begin{DoxyCompactList}\small\item\em Computes the intersection of the \hyperlink{classBox}{Box} with right\+Box. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a366054107f5e2d32836b8b666e10a3e2}{}\hyperlink{classBox}{Box} \hyperlink{classBox_a366054107f5e2d32836b8b666e10a3e2}{shift} (int a\+\_\+direction, int a\+\_\+offset)\label{classBox_a366054107f5e2d32836b8b666e10a3e2}
+
+\begin{DoxyCompactList}\small\item\em Computes shifted \hyperlink{classBox}{Box} by a\+\_\+offset in direction a\+\_\+direction. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a510ddbb4442c8dc1801c5e4d5a3c6cd0}{}\hyperlink{classBox}{Box} \hyperlink{classBox_a510ddbb4442c8dc1801c5e4d5a3c6cd0}{shift} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt)\label{classBox_a510ddbb4442c8dc1801c5e4d5a3c6cd0}
+
+\begin{DoxyCompactList}\small\item\em Computes shifted \hyperlink{classBox}{Box} by a\+\_\+pt. \end{DoxyCompactList}\item 
+\hypertarget{classBox_ae55bf559ec09e3968c69210e224789ce}{}\hyperlink{classBox}{Box} \hyperlink{classBox_ae55bf559ec09e3968c69210e224789ce}{grow} (int a\+\_\+numpoints)\label{classBox_ae55bf559ec09e3968c69210e224789ce}
+
+\begin{DoxyCompactList}\small\item\em Grow in all of the coordinate directions by a\+\_\+numpoints. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a5e36dea04f5a69f195408a6d0e0592ba}{}\hyperlink{classBox}{Box} \hyperlink{classBox_a5e36dea04f5a69f195408a6d0e0592ba}{grow} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt)\label{classBox_a5e36dea04f5a69f195408a6d0e0592ba}
+
+\begin{DoxyCompactList}\small\item\em Grow in each coordinate direction by an amount given by the component of a\+\_\+pt. \end{DoxyCompactList}\item 
+\hypertarget{classBox_acdae3f12a6523dfff88b3cc421b3f675}{}\hyperlink{classBox}{Box} \hyperlink{classBox_acdae3f12a6523dfff88b3cc421b3f675}{coarsen} (int a\+\_\+numpoints)\label{classBox_acdae3f12a6523dfff88b3cc421b3f675}
+
+\begin{DoxyCompactList}\small\item\em coarsen in all of the coordinate directions by a\+\_\+numpoints. \end{DoxyCompactList}\item 
+\hypertarget{classBox_ab8edbeddfbefdaccb8f69894cea8d920}{}\hyperlink{classBox}{Box} \hyperlink{classBox_ab8edbeddfbefdaccb8f69894cea8d920}{coarsen} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt)\label{classBox_ab8edbeddfbefdaccb8f69894cea8d920}
+
+\begin{DoxyCompactList}\small\item\em coarsen in each coordinate direction by an amount given by the component of a\+\_\+pt. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a0062584dbed1587ad9a8d15425f55055}{}\hyperlink{classBox}{Box} \hyperlink{classBox_a0062584dbed1587ad9a8d15425f55055}{refine} (int a\+\_\+numpoints)\label{classBox_a0062584dbed1587ad9a8d15425f55055}
+
+\begin{DoxyCompactList}\small\item\em refine in all of the coordinate directions by a\+\_\+numpoints. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a967c3dbf4d1b64d9100d2f276f967209}{}\hyperlink{classBox}{Box} \hyperlink{classBox_a967c3dbf4d1b64d9100d2f276f967209}{refine} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt)\label{classBox_a967c3dbf4d1b64d9100d2f276f967209}
+
+\begin{DoxyCompactList}\small\item\em refine in each coordinate direction by an amount given by the component of a\+\_\+pt. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a1921ede43e51da40e088145e714cd648}{}const \hyperlink{classPoint}{Point} \& \hyperlink{classBox_a1921ede43e51da40e088145e714cd648}{get\+Low\+Corner} () const \label{classBox_a1921ede43e51da40e088145e714cd648}
+
+\begin{DoxyCompactList}\small\item\em Access functions for low, high bounds of \hyperlink{classBox}{Box}. \end{DoxyCompactList}\item 
+\hypertarget{classBox_aab4951e1653eeee8086450863154f32b}{}const \hyperlink{classPoint}{Point} \& {\bfseries get\+High\+Corner} () const \label{classBox_aab4951e1653eeee8086450863154f32b}
+
+\item 
+\hypertarget{classBox_a13b7df477ab93b4fe974a5151a6c2196}{}int \hyperlink{classBox_a13b7df477ab93b4fe974a5151a6c2196}{linear\+Index} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt) const \label{classBox_a13b7df477ab93b4fe974a5151a6c2196}
+
+\begin{DoxyCompactList}\small\item\em Computes a linear index corresponding to the input array. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a18e496a4a686a834850b5d9720a1c322}{}const int \& \hyperlink{classBox_a18e496a4a686a834850b5d9720a1c322}{size\+Of} () const \label{classBox_a18e496a4a686a834850b5d9720a1c322}
+
+\begin{DoxyCompactList}\small\item\em Computes the size of the \hyperlink{classBox}{Box}. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a342008fa11641f5b3b79841692411d44}{}bool \hyperlink{classBox_a342008fa11641f5b3b79841692411d44}{operator==} (const \hyperlink{classBox}{Box} \&a\+\_\+rhs\+Box) const \label{classBox_a342008fa11641f5b3b79841692411d44}
+
+\begin{DoxyCompactList}\small\item\em When are two boxes equal. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a5af922c141c83b2bb25e522899da5ad5}{}bool \hyperlink{classBox_a5af922c141c83b2bb25e522899da5ad5}{contains} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt) const \label{classBox_a5af922c141c83b2bb25e522899da5ad5}
+
+\begin{DoxyCompactList}\small\item\em Contains the \hyperlink{classPoint}{Point} a\+\_\+pt. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a9eb58cb9f4896baa991de834c050d97a}{}int \hyperlink{classBox_a9eb58cb9f4896baa991de834c050d97a}{get\+Index} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt) const \label{classBox_a9eb58cb9f4896baa991de834c050d97a}
+
+\begin{DoxyCompactList}\small\item\em Get linear index of a \hyperlink{classPoint}{Point} in a \hyperlink{classBox}{Box}. \end{DoxyCompactList}\item 
+\hypertarget{classBox_a27c222260017eba46f720d8bc2b94b7f}{}bool \hyperlink{classBox_a27c222260017eba46f720d8bc2b94b7f}{not\+Done} (const \hyperlink{classPoint}{Point} \&a\+\_\+pt) const \label{classBox_a27c222260017eba46f720d8bc2b94b7f}
+
+\begin{DoxyCompactList}\small\item\em Says that you have not yet iterated through all ofthe points of the \hyperlink{classBox}{Box}. \end{DoxyCompactList}\item 
+void \hyperlink{classBox_a450ac265f84723771d2281785d51d424}{increment} (\hyperlink{classPoint}{Point} \&a\+\_\+pt) const 
+\item 
+\hypertarget{classBox_a30c40f4155427e7f68704e7607b8de89}{}\hyperlink{classPoint}{Point} \hyperlink{classBox_a30c40f4155427e7f68704e7607b8de89}{get\+Point} (int k) const \label{classBox_a30c40f4155427e7f68704e7607b8de89}
+
+\begin{DoxyCompactList}\small\item\em Get \hyperlink{classPoint}{Point} corresponding to a linear index in \mbox{[}0, ... \hyperlink{classBox_a18e496a4a686a834850b5d9720a1c322}{size\+Of()}-\/1\mbox{]} inside the \hyperlink{classBox}{Box}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classBox_a450ac265f84723771d2281785d51d424}{}\index{Box@{Box}!increment@{increment}}
+\index{increment@{increment}!Box@{Box}}
+\subsubsection[{increment(\+Point \&a\+\_\+pt) const }]{\setlength{\rightskip}{0pt plus 5cm}void Box\+::increment (
+\begin{DoxyParamCaption}
+\item[{{\bf Point} \&}]{a\+\_\+pt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classBox_a450ac265f84723771d2281785d51d424}
+iteration through the points in a \hyperlink{classBox}{Box}. a\+\_\+pt is incremented to the next point in the \hyperlink{classBox}{Box}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/xingjie/\+Documents/grad\+School/courses/software\+Eng\+For\+Sci\+Comp/final\+Project/github\+Repo/\+C\+S294-\/73/code/src/\+Rect\+Array/Box.\+H\item 
+/home/xingjie/\+Documents/grad\+School/courses/software\+Eng\+For\+Sci\+Comp/final\+Project/github\+Repo/\+C\+S294-\/73/code/src/\+Rect\+Array/Box\+Implem.\+H\end{DoxyCompactItemize}
