@@ -7,6 +7,8 @@
 #include "Box.H"
 #include "RectMDArray.H"
 #include "RectMDOperators.H"
+#define P_NUM 10
+#define DIM 2
 using namespace std;
 
 class Dendritic;
@@ -27,11 +29,24 @@ class Dendritic
 public:
   Dendritic();
   Dendritic(Box& a_box,RectMDArray<Real>& phi_int,RectMDArray<Real>& u_int);
+  bool isDefined();
   void increment(const DendriticShift& a_shift);
   bool m_isDefined;
   Box m_box;
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;
+
+    //Constant
+  Real m_h; // the unit cell distance
+  Real m_D;
+  Real m_tau;
+  Real m_beta;
+  Real m_eta;
+  Real m_um;
+  Real m_W0;
+  Real m_mu;
+  Real m_a0;
+  Real m_theta0;
 
   
   

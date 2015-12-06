@@ -42,6 +42,29 @@ void DendriticShift::setToZero()
 // Implement the Dendritic Class
  Dendritic::Dendritic()
 {
+    m_h=0; // the unit cell distance
+  m_D=0;
+  m_tau=0;
+  m_beta=0;
+  m_eta=0;
+  m_um=0;
+  m_W0=0;
+  m_mu=0;
+  m_a0=0;
+  m_theta0=0;
+}
+
+//this is to test the parameter is well defined or not.
+bool Dendritic::isDefined()
+{
+  bool is_def=1;
+  array<Real,P_NUM> testPar={m_h,m_D,m_tau,m_beta,m_eta,m_um,m_W0,m_mu,m_a0,m_theta0};
+  for (int i=0;i<P_NUM;i++)
+    {
+      if (testPar[i]==0)
+      bool is_def=0;
+    }
+  return is_def;
 }
 
 Dendritic::Dendritic(Box& a_box,RectMDArray<Real>& phi_int,RectMDArray<Real>& u_int)

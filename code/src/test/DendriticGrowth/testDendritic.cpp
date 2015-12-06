@@ -33,19 +33,18 @@ int main()
   kOut.init(test_d);
   kIn.setToZero();
   
-  DendriticGrowth test_dG;
-  test_dG.m_h=h; // the unit cell distance
-   test_dG.m_D=1;
-   test_dG.m_tau=1;
-   test_dG.m_beta=1;
-   test_dG.m_eta=1;
-   test_dG.m_um=1;
-   test_dG.m_W0=1;
-   test_dG.m_mu=1;
-   test_dG.m_a0=1;
-   test_dG.m_theta0=0;
+  test_d.m_h=h; // the unit cell distance
+   test_d.m_D=0.1;
+   test_d.m_tau=0.1;
+   test_d.m_beta=0.1;
+   test_d.m_eta=0.1;
+   test_d.m_um=0.1;
+   test_d.m_W0=0.1;
+   test_d.m_mu=0.1;
+   test_d.m_a0=0.1;
+   test_d.m_theta0=0.1;
 
-   assert(test_dG.isDefined());
+   
  
   Real time = 0.;
   Real dt = 140*.025/N;
@@ -53,6 +52,7 @@ int main()
   RK4<Dendritic,DendriticGrowth,DendriticShift> integrator;
   for(int i=0; i<m; i++)
     {
+      assert(test_d.isDefined());
       integrator.advance(time, dt, test_d);
       time = time + dt;
       cout << "time = " << time << "  dt " << dt << endl;

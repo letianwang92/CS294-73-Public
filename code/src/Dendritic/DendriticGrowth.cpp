@@ -1,8 +1,7 @@
 
 #include "DendriticGrowth.H"
 #include <math.h>
-#define P_NUM 10
-#define DIM 2
+
 using namespace std;
 Real dot(array<Real,DIM> a, array<Real,DIM> b)
 {
@@ -17,30 +16,9 @@ Real dot(array<Real,DIM> a, array<Real,DIM> b)
 // this is default constructor, however, the parameter will actually require main program to access this class to define.
 DendriticGrowth::DendriticGrowth()
 {
-  m_h=0; // the unit cell distance
-  m_D=0;
-  m_tau=0;
-  m_beta=0;
-  m_eta=0;
-  m_um=0;
-  m_W0=0;
-  m_mu=0;
-  m_a0=0;
-  m_theta0=0;
 }
 
-//this is to test the parameter is well defined or not.
-bool DendriticGrowth::isDefined()
-{
-  bool is_def=1;
-  array<Real,P_NUM> testPar={m_h,m_D,m_tau,m_beta,m_eta,m_um,m_W0,m_mu,m_a0,m_theta0};
-  for (int i=0;i<P_NUM;i++)
-    {
-      if (testPar[i]==0)
-      bool is_def=0;
-    }
-  return is_def;
-}
+
 
 void DendriticGrowth::operator()(DendriticShift& a_k, 
                      const Real& a_time, const Real& dt, 
@@ -54,8 +32,19 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
   Real LOfPhi;
   Real nu;
   array<Real,DIM> g_phi;
-  Real tau_rev=1/m_tau;
-  
+  // setup constant
+  Real m_h=a_state.m_h;
+  Real m_D=a_state.m_D;
+  Real m_tau=a_state.m_tau;
+  Real m_beta=a_state.m_beta;
+  Real m_eta=a_state.m_eta;
+  Real m_um=a_state.m_um;
+  Real m_W0=a_state.m_W0;
+  Real m_mu=a_state.m_mu;
+  Real m_a0=a_state.m_a0;
+  Real m_theta0=a_state.m_theta0;
+  Real tau_rev=1/m_tau;// the unit cell distance
+  // Setup calculation variables
   Box domain(a_state.m_box);
   RectMDArray <Real> a_phi(a_state.m_phi);
   RectMDArray <Real> a_u(a_state.m_u);
