@@ -4,7 +4,8 @@ DIM = 2
 system := $(shell uname)
 #CXX=g++
 CXX=clang++
-CFLAGS = -O3
+#CFLAGS = -O3
+CFLAGS = -g -Wall
 CFLAGS += -std=c++11
 ifeq ($(CXX) , clang++)
 	CFLAGS += -stdlib=libc++
