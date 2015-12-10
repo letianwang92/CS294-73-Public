@@ -1,4 +1,3 @@
-
 #include "DendriticGrowth.H"
 #include <math.h>
 

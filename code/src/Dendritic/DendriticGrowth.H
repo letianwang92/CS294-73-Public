@@ -12,18 +12,13 @@
 #define DIM 2
 using namespace std;
 
-
-
 class DendriticGrowth
 {
 public:
   DendriticGrowth();
-
   // RHS
   void operator()(DendriticShift& a_k, 
                      const Real& a_time, const Real& dt, 
                      Dendritic& a_state);
-  
-
 };
 #endif

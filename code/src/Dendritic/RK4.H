@@ -32,7 +32,7 @@ template <class X, class F, class dX>
 void RK4<X, F, dX>::advance(double a_time, double a_dt, X& a_state)
 {
   // this looks odd, but it is a common programming error
-  //  you can't write "1/6* m_k"; and get what you want.  the first
+  // you can't write "1/6* m_k"; and get what you want.  the first
   // term is evaluated as integer division, resulting in a zero.
   double sixth = 1, third=1, half = 1;
   sixth/=6; third/=3; half/=2;

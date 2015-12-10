@@ -36,9 +36,10 @@ public:
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;
 
-    //Constant
+  // Constants
+  // TODO: Besides the unit cell distance, which parameters should be given at running time?
   Real m_h; // the unit cell distance
-  Real m_D;
+  Real m_D; 
   Real m_tau;
   Real m_beta;
   Real m_eta;
@@ -47,10 +48,6 @@ public:
   Real m_mu;
   Real m_a0;
   Real m_theta0;
-
-  
-  
-
 };
 
 
