@@ -36,6 +36,11 @@ int main(int argc, char* argv[])
   int high[DIM] = {static_cast<int>(N),static_cast<int>(N)};
   Box bx(low,high);
   d.m_box=bx;
+  DendriticShift kIn,kOut;
+  kIn.init(d);
+  kOut.init(d);
+  kIn.setToZero();
+  DendriticGrowth dv(); 
 
   /// Initial conditions: Specify Phi and u fields
   if (test == 1)
@@ -52,15 +57,18 @@ int main(int argc, char* argv[])
   }
 
   /// Time advancing
-  RK4<Dendritic,DendriticGrowth,DendriticShift> integrator;
+  Real time = 0.;
+  Real dt = 200*.025/N;
+  int m = 5000;
+  RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
   MDWrite(&d.m_phi);
   for(int i=0; i<m; i++)
-    {
-      integrator.advance(time, dt, d);
-      time = time + dt;
-      cout << "time = " << time << "  dt " << dt << endl;
-      MDWrite(&d.m_phi);
-      if (time >= timeStop) 
-          break;
-    }
+  {
+    integrator.advance(time, dt, d);
+    time = time + dt;
+    cout << "time = " << time << "  dt " << dt << endl;
+    MDWrite(&d.m_phi);
+    if (time >= timeStop) 
+      break;
+  }
 }
