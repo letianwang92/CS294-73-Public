@@ -37,17 +37,16 @@ public:
   RectMDArray<Real> m_u;
 
   // Constants
-  // TODO: Besides the unit cell distance, which parameters should be given at running time?
-  Real m_h; // the unit cell distance
-  Real m_D; 
-  Real m_tau;
-  Real m_beta;
-  Real m_eta;
-  Real m_um;
-  Real m_W0;
-  Real m_mu;
-  Real m_a0;
-  Real m_theta0;
+  Real m_h; // unit cell distance
+  Real m_D; // thermal diffusion constant
+  Real m_tau; // relaxiation time
+  Real m_beta; // material parameter
+  Real m_eta; // material parameter
+  Real m_um; // melting temperature
+  Real m_W0; // initial interfacial width
+  Real m_mu; // modulation of interfacial width, in the function of interfacial width 
+  Real m_a0; // constant, in the function of interfacial width
+  Real m_theta0; // orientation angle
 };
 
 
