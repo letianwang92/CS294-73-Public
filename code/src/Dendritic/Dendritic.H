@@ -28,7 +28,7 @@ class Dendritic
 {
 public:
   Dendritic();
-  Dendritic(Box& a_box,RectMDArray<Real>& phi_int,RectMDArray<Real>& u_int);
+  Dendritic(Box& a_box, RectMDArray<Real>& phi_int, RectMDArray<Real>& u_int);
   bool isDefined();
   void increment(const DendriticShift& a_shift);
   bool m_isDefined;
@@ -44,8 +44,8 @@ public:
   Real m_eta; // material parameter
   Real m_um; // melting temperature
   Real m_W0; // initial interfacial width
-  Real m_mu; // modulation of interfacial width, in the function of interfacial width 
-  Real m_a0; // constant, in the function of interfacial width
+  Real m_mu; // modulation of interfacial width
+  Real m_a0; // anisotropic mode number
   Real m_theta0; // orientation angle
 };
 

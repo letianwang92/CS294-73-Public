@@ -40,9 +40,9 @@ void DendriticShift::setToZero()
 }
 
 // Implement the Dendritic Class
- Dendritic::Dendritic()
+Dendritic::Dendritic()
 {
-    m_h=0; // the unit cell distance
+  m_h=0; // the unit cell distance
   m_D=0;
   m_tau=0;
   m_beta=0;
@@ -67,7 +67,7 @@ bool Dendritic::isDefined()
   return is_def;
 }
 
-Dendritic::Dendritic(Box& a_box,RectMDArray<Real>& phi_int,RectMDArray<Real>& u_int)
+Dendritic::Dendritic(Box& a_box, RectMDArray<Real>& phi_int, RectMDArray<Real>& u_int)
 {
   m_box=a_box;
   m_phi=phi_int;

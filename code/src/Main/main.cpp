@@ -15,6 +15,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+  /// TODO: adjust domain size and time step
   /// Input from screen, TODO: add more inputs
   unsigned int M;
   unsigned int N;
@@ -30,35 +31,71 @@ int main(int argc, char* argv[])
   double h = 1./N;
 
   /// Initialize Dendritic class
-  Dendritic d;
-  d.m_h = h;
   int low[DIM] = {0,0};
+  Point lowCorner(lo);
   int high[DIM] = {static_cast<int>(N),static_cast<int>(N)};
+  int midpt = {0.5, 0.5};
   Box bx(low,high);
-  d.m_box=bx;
-  DendriticShift kIn,kOut;
-  kIn.init(d);
-  kOut.init(d);
-  kIn.setToZero();
-  DendriticGrowth dv(); 
+  RectMDArray<Real> phi_int(bx);
+  RectMDArray<Real> u_int(bx);
+  phi_int.setVal(0.)
+  u_int.setVal(0.)
+  // Set seed at the center of the domain, r = 0.1
+  for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
+  {
+    if (((pt[0]-midpt[0])^2 + (pt[1]-midpt[1])^2) <= 0.01)
+      phi_int(pt) = 1.
+  }
+  Dendritic d(bx, phi_int, u_int);
+  d.m_h = h;
 
-  /// Initial conditions: Specify Phi and u fields
+  // DendriticShift kIn,kOut; // TODO: Not sure whether we will need them.
+  // kIn.init(d);
+  // kOut.init(d);
+  // kIn.setToZero();
+  // DendriticGrowth dv(); 
+
+  /// Initial conditions: Specify parameters and seeds.
   if (test == 1)
   {
-
+    d.m_D = 1.; // thermal diffusion constant
+    d.m_tau = 0.0003; // relaxiation time
+    d.m_beta = 0.9; // material parameter
+    d.m_eta = 10.0; // material parameter
+    d.m_um = 1.0; // melting temperature
+    d.m_W0 = 0.01; // initial interfacial width
+    d.m_mu = 0.02; // modulation of interfacial width
+    d.m_a0 = 6; // anisotropic mode number
+    d.m_theta0 = 0; // orientation angle
   }
   else if (test == 2) 
   {
-
+    d.m_D = 1.; // thermal diffusion constant
+    d.m_tau = 0.0004; // relaxiation time
+    d.m_beta = 0.9; // material parameter
+    d.m_eta = 10.0; // material parameter
+    d.m_um = 1.0; // melting temperature
+    d.m_W0 = 0.01; // initial interfacial width
+    d.m_mu = 0.02; // modulation of interfacial width
+    d.m_a0 = 6; // anisotropic mode number
+    d.m_theta0 = 0; // orientation angle
   }
   else
   {
-
+    d.m_D = 1.; // thermal diffusion constant
+    d.m_tau = 0.0005; // relaxiation time
+    d.m_beta = 0.9; // material parameter
+    d.m_eta = 10.0; // material parameter
+    d.m_um = 1.0; // melting temperature
+    d.m_W0 = 0.01; // initial interfacial width
+    d.m_mu = 0.02; // modulation of interfacial width
+    d.m_a0 = 4; // anisotropic mode number
+    d.m_theta0 = 0; // orientation angle
   }
 
   /// Time advancing
   Real time = 0.;
-  Real dt = 200*.025/N;
+  Real dt = 0.003; // time step
   int m = 5000;
   RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
   MDWrite(&d.m_phi);
