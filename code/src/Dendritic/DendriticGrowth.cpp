@@ -18,7 +18,8 @@ DendriticGrowth::DendriticGrowth()
 }
 
 
-
+// TODO: Why is the temperature itself, instead of the dimensionless temperature, solved? 
+// TODO: Any advantage of doing this? Did we follow the corresponding equation then?
 void DendriticGrowth::operator()(DendriticShift& a_k, 
                      const Real& a_time, const Real& dt, 
                      Dendritic& a_state)
