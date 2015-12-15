@@ -4,10 +4,14 @@ DIM = 2
 system := $(shell uname)
 CXX=g++
 #CXX=clang++
-CFLAGS = -O3
+#CFLAGS = -O3
+CFLAGS = -g -Wall
 CFLAGS += -std=c++11
+ifeq ($(system),Darwin)
+  CXX = clang++
+endif
 ifeq ($(CXX) , clang++)
-	CFLAGS += -stdlib=libc++
+	CFLAGS += -stdlib=libc++ -mmacosx-version-min=10.10.5
 endif
 
 CFLAGS += -I. -I$(HOME)/Dendritic -I$(HOME)/RectArray -I$(HOME)/Timer -I$(HOME)/Writers -DDIM=$(DIM)
