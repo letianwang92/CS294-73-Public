@@ -7,7 +7,7 @@ Real dot(array<Real,DIM> a, array<Real,DIM> b)
   Real ret=0;
   for(int i=0;i<DIM;i++)
     {
-      ret+=a[i]+b[i];
+      ret+=a[i]*b[i];
     }
   return ret;
 }
@@ -67,7 +67,7 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
 	int sign=0;
 	if (g_phi[0]>0)
 	{ sign=1;}
-	m_theta=atan(g_phi[1]/g_phi[0])+pi*(1-sign);
+	m_theta=atan(g_phi[1]/(1E-6+g_phi[0]))+pi*(1-sign);
 	// g_phi is designed for faster access data. If not faster, remove it.
 	W=m_W0*(1+m_mu*cos(m_a0*(m_theta-m_theta0)));
 	W_prime=-m_W0*m_mu*m_a0*sin(m_a0*(m_theta-m_theta0));
@@ -75,6 +75,9 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
 	WX2[pt]=W*W_prime*g_phi[0];
 	W_square[pt]=W*W;
 	W2_LOfPhi[pt]=W_square[pt]*LOfPhi;
+  //cout << "g_phi[1]/g_phi[0]=" << g_phi[1]/g_phi[0] <<", ";
+  //cout << "m_theta=" << m_theta <<", ";
+  //cout << "W=" << W <<", ";
       }
 
   // here we calculated the phi gradient twice. which is time consuming for the
@@ -83,11 +86,21 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
         
         array <Real,DIM> g_W2=Operator.getGradient(W_square,pt,m_h);
       nu=m_beta/pi*atan(m_eta*(m_um-a_u[pt]));
-      a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-1/2+nu)
-				      +Operator.getGradient(WX1,pt,m_h)[0]-Operator.getGradient(WX2,pt,m_h)[1]
+      a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
+				      -Operator.getGradient(WX1,pt,m_h)[0]+Operator.getGradient(WX2,pt,m_h)[1]
 				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));
    
-      a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*Operator.getLaplacian(a_phi,pt,m_h);
+      a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*Operator.getLaplacian(a_u,pt,m_h);
+
+//      cout <<"nu="<< nu << ", ";
+//      cout <<"Operator.getGradient(WX1,pt,m_h)[0]="<< Operator.getGradient(WX1,pt,m_h)[0] << endl;
+//     cout <<"Operator.getGradient(WX2,pt,m_h)[1]="<< Operator.getGradient(WX2,pt,m_h)[1] << endl;
+//      cout <<"dot(GOfPhi[pt],g_W2)="<< dot(GOfPhi[pt],g_W2) << endl;
+//    cout <<"W2_LOfPhi[pt]="<< W2_LOfPhi[pt] << endl;
+//      cout <<"tau_rev="<< tau_rev << ", ";
+//      cout <<"a_phi[pt]="<< a_phi[pt] << ", ";
+      cout <<"a_k.m_phiShift[pt]="<< a_k.m_phiShift[pt] <<endl;
+//      cout <<"a_k.m_uShift[pt]="<< a_k.m_uShift[pt] <<endl;
     }
    
     

@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
 
   /// Time advancing
   Real time = 0.;
-  Real dt = 0.003; // time step
+  Real dt = 0.0003; // time step
   int m = 5000;
   RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
   MDWrite(d.m_phi);
