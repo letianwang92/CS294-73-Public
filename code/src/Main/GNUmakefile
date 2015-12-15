@@ -19,6 +19,7 @@ LIBS:=
 
 SRCFILES:= $(wildcard ./*.cpp $(HOME)/Dendritic/*.cpp $(HOME)/RectArray/*.cpp $(HOME)/Timer/*.cpp $(HOME)/Writers/*.cpp)
 OBJS:= $(patsubst %.cpp, %.o, $(SRCFILES))
+DEPENDENTFILE:= $(patsubst %.cpp, %.d, $(SRCFILES))
 
 %.o: %.cpp GNUmakefile
 	$(CXX) -c $(CFLAGS) $< -o $@
@@ -31,6 +32,6 @@ clean:
 	rm *.o *.exe *.d *.vtk
 	
 realclean:
-	rm *.o *.exe *.d *.vtk $(OBJS) ../Dendritic/*.d ../Writers/*.d ../RectArray/*.d
+	rm *.o *.exe *.d *.vtk $(OBJS) $(DEPENDENTFILE) 
 	
 -include $(OBJS:.o=.d)
