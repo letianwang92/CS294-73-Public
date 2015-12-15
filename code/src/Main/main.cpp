@@ -44,13 +44,17 @@ int main(int argc, char* argv[])
   // Set seed at the center of the domain, r = 0.1
   for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
   {
-    double rd = sqrt((pt[0]-midpt[0])*(pt[0]-midpt[0])+(pt[1]-midpt[1])*(pt[1]-midpt[1]));
+    double rd = sqrt((pt[0]*h-midpt[0])*(pt[0]*h-midpt[0])+(pt[1]*h-midpt[1])*(pt[1]*h-midpt[1]));
     if (rd < 0.1)
       phi_int[pt] = 1.;
   }
+
+  // Check the initialization
+  MDWrite(phi_int);
   Dendritic d(bx, phi_int, u_int);
   d.m_h = h;
 
+    //COMMENT-Letian: I think we do not need to initialize this, apology.
   // DendriticShift kIn,kOut; // TODO: Not sure whether we will need them.
   // kIn.init(d);
   // kOut.init(d);
