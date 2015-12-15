@@ -1,5 +1,7 @@
-Letian Wang: DendriticGrowth.H/cpp
+Letian Wang: Dendritic .H/cpp DendriticGrowth.H/cpp
 
 Xian Shi: main.cpp, visit writer
 
 Xingjie Pan: RectMDOperators.cpp , makefile, doxygen
+
+All the memebers discuss and devised the program.
