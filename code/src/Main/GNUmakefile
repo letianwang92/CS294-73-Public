@@ -27,6 +27,6 @@ clean:
 	rm *.o *.exe *.d *.vtk
 	
 realclean:
-	rm *.o *.exe *.d *.vtk $(OBJS)
+	rm *.o *.exe *.d *.vtk $(OBJS) ../Dendritic/*.d ../Writers/*.d ../RectArray/*.d
 	
 -include $(OBJS:.o=.d)
