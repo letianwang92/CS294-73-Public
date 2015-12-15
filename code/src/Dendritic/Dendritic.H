@@ -7,6 +7,8 @@
 #include "Box.H"
 #include "RectMDArray.H"
 #include "RectMDOperators.H"
+#include "WriteRectMDArray.H"
+#include "VisitWriter.H"
 #define P_NUM 10
 #define DIM 2
 using namespace std;
@@ -31,7 +33,7 @@ public:
   Dendritic(Box& a_box, RectMDArray<Real>& phi_int, RectMDArray<Real>& u_int);
   bool isDefined();
   void increment(const DendriticShift& a_shift);
-  bool m_isDefined;
+  bool m_isInitialized;
   Box m_box;
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;

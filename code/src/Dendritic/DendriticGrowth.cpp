@@ -76,8 +76,8 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
 	W_square[pt]=W*W;
 	W2_LOfPhi[pt]=W_square[pt]*LOfPhi;
       }
-    
-  // here we calculated the phi gradient twice. which is time consuming for the 
+
+  // here we calculated the phi gradient twice. which is time consuming for the
   for (Point pt = innerbox.getLowCorner(); innerbox.notDone(pt);innerbox.increment(pt))
     {
         
@@ -86,6 +86,7 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
       a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-1/2+nu)
 				      +Operator.getGradient(WX1,pt,m_h)[0]-Operator.getGradient(WX2,pt,m_h)[1]
 				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));
+   
       a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*Operator.getLaplacian(a_phi,pt,m_h);
     }
    

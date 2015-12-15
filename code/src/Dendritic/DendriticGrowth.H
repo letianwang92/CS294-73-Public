@@ -8,6 +8,8 @@
 #include "RectMDArray.H"
 #include "RectMDOperators.H"
 #include "Dendritic.H"
+#include "WriteRectMDArray.H"
+#include "VisitWriter.H"
 #define P_NUM 10
 #define DIM 2
 using namespace std;

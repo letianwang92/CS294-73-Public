@@ -36,20 +36,39 @@ void RK4<X, F, dX>::advance(double a_time, double a_dt, X& a_state)
   // term is evaluated as integer division, resulting in a zero.
   double sixth = 1, third=1, half = 1;
   sixth/=6; third/=3; half/=2;
-  
+
   m_delta.init(a_state);
+    //test
+MDWrite(m_delta.m_phiShift);
+    
   m_k.init(a_state);
+      //test
+  MDWrite(m_k.m_phiShift);
+
   m_f(m_k, a_time, a_dt, a_state);  // compute k1
+    //test
+  MDWrite(m_k.m_phiShift);
   m_delta.increment(sixth, m_k);
+    //test
+    MDWrite(m_delta.m_phiShift);
   m_k*=half;
   m_f(m_k, a_time+half*a_dt, a_dt, a_state); // compute k2
   m_delta.increment(third, m_k);
+    //test
+    MDWrite(m_delta.m_phiShift);
   m_k*=half;
   m_f(m_k, a_time+half*a_dt, a_dt, a_state);  // conpute k3
   m_delta.increment(third, m_k);
+    //test
+    MDWrite(m_delta.m_phiShift);
   m_f(m_k, a_time+a_dt, a_dt, a_state); // compute k4
   m_delta.increment(sixth, m_k);
+    //test
+    MDWrite(m_delta.m_phiShift);
   a_state.increment(m_delta);
+    //test
+    MDWrite(a_state.m_phi);
+
 }
   
 #endif 
