@@ -11,6 +11,7 @@
 #include "VisitWriter.H"
 #include "RK4.H"
 #include "CH_Timer.H"
+#include "PowerItoI.H"
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -32,19 +33,20 @@ int main(int argc, char* argv[])
 
   /// Initialize Dendritic class
   int low[DIM] = {0,0};
-  Point lowCorner(lo);
+  Point lowCorner(low);
   int high[DIM] = {static_cast<int>(N),static_cast<int>(N)};
-  int midpt = {0.5, 0.5};
+  double midpt[DIM] = {0.5,0.5};
   Box bx(low,high);
   RectMDArray<Real> phi_int(bx);
   RectMDArray<Real> u_int(bx);
-  phi_int.setVal(0.)
-  u_int.setVal(0.)
+  phi_int.setVal(0.);
+  u_int.setVal(0.);
   // Set seed at the center of the domain, r = 0.1
   for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
   {
-    if (((pt[0]-midpt[0])^2 + (pt[1]-midpt[1])^2) <= 0.01)
-      phi_int(pt) = 1.
+    double rd = sqrt((pt[0]-midpt[0])*(pt[0]-midpt[0])+(pt[1]-midpt[1])*(pt[1]-midpt[1]));
+    if (rd < 0.1)
+      phi_int[pt] = 1.;
   }
   Dendritic d(bx, phi_int, u_int);
   d.m_h = h;
@@ -98,13 +100,13 @@ int main(int argc, char* argv[])
   Real dt = 0.003; // time step
   int m = 5000;
   RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
-  MDWrite(&d.m_phi);
+  MDWrite(d.m_phi);
   for(int i=0; i<m; i++)
   {
     integrator.advance(time, dt, d);
     time = time + dt;
     cout << "time = " << time << "  dt " << dt << endl;
-    MDWrite(&d.m_phi);
+    MDWrite(d.m_phi);
     if (time >= timeStop) 
       break;
   }

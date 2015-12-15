@@ -24,9 +24,9 @@ main: GNUmakefile $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o main.exe
 
 clean:
-	rm *.o *.exe *.d
+	rm *.o *.exe *.d *.vtk
 	
 realclean:
-	rm *.o *.exe *.d $(OBJS)
+	rm *.o *.exe *.d *.vtk $(OBJS)
 	
 -include $(OBJS:.o=.d)
