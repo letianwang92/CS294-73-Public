@@ -13,16 +13,24 @@
     
 \section{Stability Constrain}
 The stability of the diffusion of the $\phi$ is basing on the $\frac{h^2}{dt}$
-
+\\
+The dt is chosen in coherence with the literature to be 0.0003. However, this require the h to be not smaller than 0.01. Therefore, we updated the setting in h from  $h=1/N$ to fixed value 0.03. 
 
 
 \section{Parameter Effect on Dendritic Growth}
-The following existing classes will be directly utilized:
-\begin{description}
-\item[Point, Box, RectMDarray]
-\item[VisitWriter, WriteRectMDArray]
-\item[CH\_Timer]
-\end{description}
+As we know, the following parameter will have an effect on the growth of the dendritic. 
+\begin{enumerate}
+
+\item[An-isotropic Number]
+This parameter defines the shape of the dendritc growth.
+\item[Interfacial Depth]
+When the depth is set to be 1, the dendritic growth is ready to go.
+If the depth is set to be 0.1, the dendritic growth is really slow.
+
+\item[Latent Heat $F$]
+This parameter in principle will define the branching effects in dendritic growth.
+\item[Melting Temperature]
+\end{enumerate}
 A new class \texttt{DendriticGrowth} is defined, along with a modified version of the original \texttt{RK4}. Inside \texttt{DendriticGrowth}, public member data and functions contain $\phi$ and $u$ fields, as well as update and increment functions for both fields. As \texttt{DendriticGrowth} is the only input class for \texttt{RK4}, class setup in \texttt{RK4} is modified accordingly. 
 
 \section{Algorithm and Flow Chart}
