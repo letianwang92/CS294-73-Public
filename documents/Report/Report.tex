@@ -3,35 +3,23 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 
-\title{Two-Dimensional Dendritic Growth Using Phase-Field Model \\ Design Document}
-\date{2015-Nov-24}
+\title{Two-Dimensional Dendritic Growth Using Phase-Field Model \\ Report}
+\date{2015-Dec-14}
 \author{CS 294-73 Group H}
 
 \begin{document}
 \pagenumbering{arabic}
 \maketitle
     
-\section{Discretization Methods and Numerical Schemes}
-Recall the governing equations:
-\begin{equation}
-\begin{cases}
-\frac{\partial u}{\partial t} =&D\nabla^2u+\frac{1}{2}\frac{\partial\phi}{\partial t} \\
-\tau\frac{\partial \phi}{\partial t} =&  \phi(1-\phi)(\phi-\frac{1}{2}+\tilde{n}(u)) - \frac{\partial}{\partial x}(WW'\frac{\partial\phi}{\partial y})\\
-&  + \frac{\partial}{\partial y}(WW'\frac{\partial\phi}{\partial x}) + \nabla(W^2)\cdot\nabla\phi + W^2\nabla^2\phi \\
-W = & W_0(1+\mu cos(a_0(\theta-\theta_0)) \\
-\theta = & tan^{-1}(\frac{\partial\phi}{\partial y}/\frac{\partial\phi}{\partial x}) + \pi(1-sign(\frac{\partial\phi}{\partial x})) 
-\end{cases}
-\end{equation}
+\section{Stability Constrain}
+The stability of the diffusion of the $\phi$ is basing on the $\frac{h^2}{dt}$
 
-A 2nd order central difference scheme will be used for spatial discretization while a 4th order Runge-Kutta scheme for time integration. 
 
-The final computational solution consists of time dependent phase field ($\phi$) and dimensionless temperature field ($u$) in the form of vtk files.
 
-\section{Software Design}
+\section{Parameter Effect on Dendritic Growth}
 The following existing classes will be directly utilized:
 \begin{description}
 \item[Point, Box, RectMDarray]
-\item[RK4]
 \item[VisitWriter, WriteRectMDArray]
 \item[CH\_Timer]
 \end{description}
@@ -40,7 +28,7 @@ A new class \texttt{DendriticGrowth} is defined, along with a modified version o
 \section{Algorithm and Flow Chart}
 \begin{figure}[htb!]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{flowchart_v_1} % Include the image placeholder.png
+%\includegraphics[width=0.8\textwidth]{flowchart_v_1} % Include the image placeholder.png
 \caption{Pseudo code diagram for dendritic growth using phase-field model}
 \end{center}
 \end{figure}
