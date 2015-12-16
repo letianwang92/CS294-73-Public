@@ -45,7 +45,8 @@ int main(int argc, char* argv[])
   for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
   {
     double rd = sqrt((pt[0]*h-midpt[0])*(pt[0]*h-midpt[0])+(pt[1]*h-midpt[1])*(pt[1]*h-midpt[1]));
-    phi_int[pt] = exp(-(rd*rd)/(2*0.1*0.1));
+   // phi_int[pt] = exp(-(rd*rd)/(2*0.1*0.1));
+    phi_int[pt] = exp(10)/exp(1.0/(1-rd));
   }
 
   // Check the initialization
