@@ -92,15 +92,12 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
       nu=m_beta/pi*atan(m_eta*(m_um-a_u[pt]));
    a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
 				      -Operator.getGradient(WX1,pt,m_h)[0]+Operator.getGradient(WX2,pt,m_h)[1]
-<<<<<<< HEAD
 				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));
         //a_k.m_phiShift[pt]=dt*tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)+W2_LOfPhi[pt]);//debug
         //a_k.m_phiShift[pt]=dt*W2_LOfPhi[pt];//debug
-=======
-				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));*/
+				  
        // a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu))+W2_LOfPhi[pt]);//debug
-        a_k.m_phiShift[pt]=dt*tau_rev*W2_LOfPhi[pt];//debug
->>>>>>> 55162d43cef3a23432df606840d1720a35baaa88
+       // a_k.m_phiShift[pt]=dt*tau_rev*W2_LOfPhi[pt];//debug
 
    
       a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*LOfU[pt];
