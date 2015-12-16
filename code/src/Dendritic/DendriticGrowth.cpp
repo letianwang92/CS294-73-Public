@@ -54,6 +54,7 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
   RectMDArray <Real> W2_LOfPhi(domain);
   RectMDArray <Real> LOfU(domain);
   RectMDArray <array <Real, DIM>> GOfPhi(domain);
+    RectMDArray <Real> LOfPhiField(domain);
     Box innerbox (domain.grow(-1));
 
     for (Point pt = innerbox.getLowCorner(); innerbox.notDone(pt);innerbox.increment(pt))
@@ -75,10 +76,13 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
 	WX2[pt]=W*W_prime*g_phi[0];
 	W_square[pt]=W*W;
 	W2_LOfPhi[pt]=W_square[pt]*LOfPhi;
+    LOfPhiField[pt]=LOfPhi;
   //cout << "g_phi[1]/g_phi[0]=" << g_phi[1]/g_phi[0] <<", ";
   //cout << "m_theta=" << m_theta <<", ";
   //cout << "W=" << W <<endl;
       }
+    
+    //MDWrite(LOfPhiField);//debug
 
   // here we calculated the phi gradient twice. which is time consuming for the
   for (Point pt = innerbox.getLowCorner(); innerbox.notDone(pt);innerbox.increment(pt))
@@ -86,11 +90,11 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
         
         array <Real,DIM> g_W2=Operator.getGradient(W_square,pt,m_h);
       nu=m_beta/pi*atan(m_eta*(m_um-a_u[pt]));
-   /*   a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
+   a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
 				      -Operator.getGradient(WX1,pt,m_h)[0]+Operator.getGradient(WX2,pt,m_h)[1]
-				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));*/
-       // a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu))+W2_LOfPhi[pt]);//debug
-        a_k.m_phiShift[pt]=dt*W2_LOfPhi[pt];//debug
+				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));
+        //a_k.m_phiShift[pt]=dt*tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)+W2_LOfPhi[pt]);//debug
+        //a_k.m_phiShift[pt]=dt*W2_LOfPhi[pt];//debug
 
    
       a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*LOfU[pt];

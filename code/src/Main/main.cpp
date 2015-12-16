@@ -29,13 +29,13 @@ int main(int argc, char* argv[])
   cout << "enter stopping time" << endl;
   cin >> timeStop;
   N = Power(2,M); // Total number of grid points
-  double h = 1./N;
-
+  //double h = 1./N;
+    Real h=0.03;
   /// Initialize Dendritic class
   int low[DIM] = {0,0};
   Point lowCorner(low);
   int high[DIM] = {static_cast<int>(N),static_cast<int>(N)};
-  double midpt[DIM] = {0.5,0.5};
+  double midpt[DIM] = {0.5*h*N,0.5*h*N};
   Box bx(low,high);
   RectMDArray<Real> phi_int(bx);
   RectMDArray<Real> u_int(bx);
@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
     d.m_W0 = 1.0; // initial interfacial width   //debug
     d.m_mu = 0.02; // modulation of interfacial width
     //d.m_a0 = 6; // anisotropic mode number
-    d.m_a0 = 0; // anisotropic mode number //debug
+    d.m_a0 = 6; // anisotropic mode number //debug
     d.m_theta0 = 0; // orientation angle
   }
   else if (test == 2) 
@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 
   /// Time advancing
   Real time = 0.;
-  Real dt = 0.0003; // time step
+  Real dt = 0.00000003; // time step
   int m = 5000;
   RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
   //MDWrite(d.m_phi);//debug
@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
     integrator.advance(time, dt, d);
     time = time + dt;
     cout << "time = " << time << "  dt " << dt << endl;
-   // MDWrite(d.m_phi);//debug
+   MDWrite(d.m_phi);//debug
     if (time >= timeStop) 
       break;
   }
