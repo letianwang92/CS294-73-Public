@@ -45,12 +45,11 @@ int main(int argc, char* argv[])
   for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
   {
     double rd = sqrt((pt[0]*h-midpt[0])*(pt[0]*h-midpt[0])+(pt[1]*h-midpt[1])*(pt[1]*h-midpt[1]));
-    if (rd < 0.1)
-      phi_int[pt] = 1.;
+    phi_int[pt] = exp(-(rd*rd)/(2*0.1*0.1));
   }
 
   // Check the initialization
-  MDWrite(phi_int);
+  //MDWrite(phi_int);//debug
   Dendritic d(bx, phi_int, u_int);
   d.m_h = h;
 
@@ -69,9 +68,11 @@ int main(int argc, char* argv[])
     d.m_beta = 0.9; // material parameter
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
-    d.m_W0 = 0.01; // initial interfacial width
+    //d.m_W0 = 0.01; // initial interfacial width
+    d.m_W0 = 1.0; // initial interfacial width   //debug
     d.m_mu = 0.02; // modulation of interfacial width
-    d.m_a0 = 6; // anisotropic mode number
+    //d.m_a0 = 6; // anisotropic mode number
+    d.m_a0 = 0; // anisotropic mode number //debug
     d.m_theta0 = 0; // orientation angle
   }
   else if (test == 2) 
@@ -81,7 +82,8 @@ int main(int argc, char* argv[])
     d.m_beta = 0.9; // material parameter
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
-    d.m_W0 = 0.01; // initial interfacial width
+      //d.m_W0 = 0.01; // initial interfacial width
+      d.m_W0 = 0.01; // initial interfacial width   //debug
     d.m_mu = 0.02; // modulation of interfacial width
     d.m_a0 = 6; // anisotropic mode number
     d.m_theta0 = 0; // orientation angle
@@ -104,13 +106,13 @@ int main(int argc, char* argv[])
   Real dt = 0.0003; // time step
   int m = 5000;
   RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
-  MDWrite(d.m_phi);
+  //MDWrite(d.m_phi);//debug
   for(int i=0; i<m; i++)
   {
     integrator.advance(time, dt, d);
     time = time + dt;
     cout << "time = " << time << "  dt " << dt << endl;
-    MDWrite(d.m_phi);
+   // MDWrite(d.m_phi);//debug
     if (time >= timeStop) 
       break;
   }

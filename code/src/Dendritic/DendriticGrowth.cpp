@@ -77,7 +77,7 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
 	W2_LOfPhi[pt]=W_square[pt]*LOfPhi;
   //cout << "g_phi[1]/g_phi[0]=" << g_phi[1]/g_phi[0] <<", ";
   //cout << "m_theta=" << m_theta <<", ";
-  //cout << "W=" << W <<", ";
+  //cout << "W=" << W <<endl;
       }
 
   // here we calculated the phi gradient twice. which is time consuming for the
@@ -86,11 +86,14 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
         
         array <Real,DIM> g_W2=Operator.getGradient(W_square,pt,m_h);
       nu=m_beta/pi*atan(m_eta*(m_um-a_u[pt]));
-      a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
+   /*   a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
 				      -Operator.getGradient(WX1,pt,m_h)[0]+Operator.getGradient(WX2,pt,m_h)[1]
-				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));
+				  +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]));*/
+       // a_k.m_phiShift[pt]=dt*(tau_rev*(a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu))+W2_LOfPhi[pt]);//debug
+        a_k.m_phiShift[pt]=dt*W2_LOfPhi[pt];//debug
+
    
-      a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*Operator.getLaplacian(a_u,pt,m_h);
+      a_k.m_uShift[pt]=0.5*a_k.m_phiShift[pt]+dt*m_D*LOfU[pt];
 
 //      cout <<"nu="<< nu << ", ";
 //      cout <<"Operator.getGradient(WX1,pt,m_h)[0]="<< Operator.getGradient(WX1,pt,m_h)[0] << endl;
@@ -99,7 +102,7 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
 //    cout <<"W2_LOfPhi[pt]="<< W2_LOfPhi[pt] << endl;
 //      cout <<"tau_rev="<< tau_rev << ", ";
 //      cout <<"a_phi[pt]="<< a_phi[pt] << ", ";
-      cout <<"a_k.m_phiShift[pt]="<< a_k.m_phiShift[pt] <<endl;
+      //cout <<"a_k.m_phiShift[pt]="<< a_k.m_phiShift[pt] <<endl;
 //      cout <<"a_k.m_uShift[pt]="<< a_k.m_uShift[pt] <<endl;
     }
    
