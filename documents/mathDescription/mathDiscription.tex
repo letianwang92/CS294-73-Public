@@ -46,14 +46,14 @@
         \end{equation}
         The equation of dimensionless temperature change is
         \begin{equation}
-            \frac{\partial u}{\partial t}=D\nabla^2u+\frac{1}{2}\frac{\partial\phi}{\partial t},
+            \frac{\partial u}{\partial t}=D\nabla^2u+L\frac{\partial\phi}{\partial t},
         \end{equation}
-        where D is the thermal diffusion constant and the second term in the right hand side is the latent heat of phase transition.
+        where D is the thermal diffusion constant and the L in second term of the right hand side is the latent heat constant of phase transition.
     \section{Governing equation in a compact form}
         In this section, we write all the equations we need in a compact form.
         \begin{equation}
             \begin{cases}
-                 \frac{\partial u}{\partial t} =&D\nabla^2u+\frac{1}{2}\frac{\partial\phi}{\partial t} \\
+                 \frac{\partial u}{\partial t} =&D\nabla^2u+L\frac{\partial\phi}{\partial t} \\
                  \tau\frac{\partial \phi}{\partial t} =&  \phi(1-\phi)(\phi-\frac{1}{2}+\tilde{n}(u)) - \frac{\partial}{\partial x}(WW'\frac{\partial\phi}{\partial y})\\
                  &  + \frac{\partial}{\partial y}(WW'\frac{\partial\phi}{\partial x}) + \nabla(W^2)\cdot\nabla\phi + W^2\nabla^2\phi \\
                  W = & W_0(1+\mu cos(a_0(\theta-\theta_0)) \\
