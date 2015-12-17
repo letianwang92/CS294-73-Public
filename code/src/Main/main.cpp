@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
   RectMDArray<Real> phi_int(bx);
   RectMDArray<Real> u_int(bx);
   phi_int.setVal(0.);
-  u_int.setVal(0.);
+  u_int.setVal(-1.);
   // Set seed at the center of the domain, r = 0.1
   for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
   {
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
     d.m_W0 = 0.01; // initial interfacial width
-    d.m_mu = 0.05; // modulation of interfacial width
+    d.m_mu = 0.02; // modulation of interfacial width
     d.m_a0 = 6; // anisotropic mode number
     d.m_theta0 = 0; // orientation angle
     d.m_L = 2; // latent heat
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
     d.m_W0 = 0.01; // initial interfacial width
-    d.m_mu = 0.05; // modulation of interfacial width
+    d.m_mu = 0.02; // modulation of interfacial width
     d.m_a0 = 4; // anisotropic mode number
     d.m_theta0 = 0; // orientation angle
     d.m_L = 2; // latent heat
@@ -86,10 +86,10 @@ int main(int argc, char* argv[])
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
     d.m_W0 = 0.01; // initial interfacial width
-    d.m_mu = 0.05; // modulation of interfacial width
+    d.m_mu = 0.02; // modulation of interfacial width
     d.m_a0 = 6; // anisotropic mode number
     d.m_theta0 = 0; // orientation angle
-    d.m_L = 4; // latent heat
+    d.m_L = 1.7; // latent heat
   }
 
   /// Time advancing
