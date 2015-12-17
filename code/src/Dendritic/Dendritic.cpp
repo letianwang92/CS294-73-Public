@@ -31,7 +31,6 @@ void DendriticShift::operator*=(double a_scale)
 
 void DendriticShift::setToZero()
 {
-
   for(Point pt = m_box.getLowCorner(); m_box.notDone(pt);m_box.increment(pt))
   {
     m_phiShift[pt]=0;

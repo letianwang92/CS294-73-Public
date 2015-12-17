@@ -75,7 +75,7 @@ void DendriticGrowth::operator()(DendriticShift& a_k,
   for (Point pt = innerbox.getLowCorner(); innerbox.notDone(pt);innerbox.increment(pt))
   {
     array <Real,DIM> g_W2=Operator.getGradient(W_square,pt,h);
-    nu=beta/pi*atan(eta*(um-a_u[pt]));
+    nu=beta/pi*atan(eta*(-a_u[pt]));
     a_k.m_phiShift[pt]=((a_phi[pt]*(1-a_phi[pt])*(a_phi[pt]-0.5+nu)
                        -Operator.getGradient(WX1,pt,h)[0]+Operator.getGradient(WX2,pt,h)[1]
 		       +dot(GOfPhi[pt],g_W2)+W2_LOfPhi[pt]))*dt/tau;

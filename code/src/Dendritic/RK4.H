@@ -1,4 +1,3 @@
-
 #ifndef _RK4_H_
 #define _RK4_H_
 
@@ -26,8 +25,6 @@ protected:
 
 //==============================================
 
-
-
 template <class X, class F, class dX>
 void RK4<X, F, dX>::advance(double a_time, double a_dt, X& a_state)
 {
@@ -38,41 +35,18 @@ void RK4<X, F, dX>::advance(double a_time, double a_dt, X& a_state)
   sixth/=6; third/=3; half/=2;
 
   m_delta.init(a_state);
-    //test
-//MDWrite(m_delta.m_phiShift);
-    
   m_k.init(a_state);
-      //test
-  //MDWrite(m_k.m_phiShift);
- //test
-  //MDWrite(m_k.m_phiShift);
   m_f(m_k, a_time, a_dt, a_state);  // compute k1
-    //test
-  //MDWrite(m_k.m_phiShift);
   m_delta.increment(sixth, m_k);
-    //test
-   // MDWrite(m_k.m_phiShift);
   m_k*=half;
   m_f(m_k, a_time+half*a_dt, a_dt, a_state); // compute k2
   m_delta.increment(third, m_k);
-    //test
-  //  MDWrite(m_k.m_phiShift);
   m_k*=half;
   m_f(m_k, a_time+half*a_dt, a_dt, a_state);  // conpute k3
   m_delta.increment(third, m_k);
-    //test
-  //  MDWrite(m_k.m_phiShift);
   m_f(m_k, a_time+a_dt, a_dt, a_state); // compute k4
   m_delta.increment(sixth, m_k);
-    //test
-   // MDWrite(m_k.m_phiShift);
-    //MDWrite(m_delta.m_phiShift);
-    //MDWrite(a_state.m_phi);
   a_state.increment(m_delta);
-    //test
-    //
-
 }
-  
 #endif 
   
