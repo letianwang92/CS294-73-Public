@@ -16,8 +16,6 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-  /// TODO: adjust domain size and time step
-  /// Input from screen, TODO: add more inputs
   unsigned int M;
   unsigned int N;
   int test;
@@ -29,8 +27,8 @@ int main(int argc, char* argv[])
   cout << "enter stopping time" << endl;
   cin >> timeStop;
   N = Power(2,M); // Total number of grid points
-  //double h = 1./N;
-    Real h=0.03;
+  Real h = 0.03; // grid spacing
+
   /// Initialize Dendritic class
   int low[DIM] = {0,0};
   Point lowCorner(low);
@@ -45,26 +43,15 @@ int main(int argc, char* argv[])
   for (Point pt=lowCorner; bx.notDone(pt); bx.increment(pt))
   {
     double rd = sqrt((pt[0]*h-midpt[0])*(pt[0]*h-midpt[0])+(pt[1]*h-midpt[1])*(pt[1]*h-midpt[1]));
-   // phi_int[pt] = exp(-(rd*rd)/(2*0.1*0.1));
-    if(rd<0.1)
+    if(rd < 0.1)
     {
-        phi_int[pt] = exp(10)/exp(1.0/(0.1-rd));
+      phi_int[pt] = 1.;
     }
   }
-
-  // Check the initialization
-  //MDWrite(phi_int);//debug
   Dendritic d(bx, phi_int, u_int);
   d.m_h = h;
 
-    //COMMENT-Letian: I think we do not need to initialize this, apology.
-  // DendriticShift kIn,kOut; // TODO: Not sure whether we will need them.
-  // kIn.init(d);
-  // kOut.init(d);
-  // kIn.setToZero();
-  // DendriticGrowth dv(); 
-
-  /// Initial conditions: Specify parameters and seeds.
+  /// Initial conditions: Specify parameters.
   if (test == 1)
   {
     d.m_D = 1.; // thermal diffusion constant
@@ -72,51 +59,54 @@ int main(int argc, char* argv[])
     d.m_beta = 0.9; // material parameter
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
-    //d.m_W0 = 0.01; // initial interfacial width
-    d.m_W0 = 1.0; // initial interfacial width   //debug
-    d.m_mu = 0.02; // modulation of interfacial width
-    //d.m_a0 = 6; // anisotropic mode number
-    d.m_a0 = 6; // anisotropic mode number //debug
+    d.m_W0 = 0.01; // initial interfacial width
+    d.m_mu = 0.05; // modulation of interfacial width
+    d.m_a0 = 6; // anisotropic mode number
     d.m_theta0 = 0; // orientation angle
+    d.m_L = 2; // latent heat
   }
   else if (test == 2) 
   {
     d.m_D = 1.; // thermal diffusion constant
-    d.m_tau = 0.0004; // relaxiation time
-    d.m_beta = 0.9; // material parameter
-    d.m_eta = 10.0; // material parameter
-    d.m_um = 1.0; // melting temperature
-      //d.m_W0 = 0.01; // initial interfacial width
-      d.m_W0 = 0.01; // initial interfacial width   //debug
-    d.m_mu = 0.02; // modulation of interfacial width
-    d.m_a0 = 6; // anisotropic mode number
-    d.m_theta0 = 0; // orientation angle
-  }
-  else
-  {
-    d.m_D = 1.; // thermal diffusion constant
-    d.m_tau = 0.0005; // relaxiation time
+    d.m_tau = 0.0003; // relaxiation time
     d.m_beta = 0.9; // material parameter
     d.m_eta = 10.0; // material parameter
     d.m_um = 1.0; // melting temperature
     d.m_W0 = 0.01; // initial interfacial width
-    d.m_mu = 0.02; // modulation of interfacial width
+    d.m_mu = 0.05; // modulation of interfacial width
     d.m_a0 = 4; // anisotropic mode number
     d.m_theta0 = 0; // orientation angle
+    d.m_L = 2; // latent heat
+  }
+  else
+  {
+    d.m_D = 1.; // thermal diffusion constant
+    d.m_tau = 0.0003; // relaxiation time
+    d.m_beta = 0.9; // material parameter
+    d.m_eta = 10.0; // material parameter
+    d.m_um = 1.0; // melting temperature
+    d.m_W0 = 0.01; // initial interfacial width
+    d.m_mu = 0.05; // modulation of interfacial width
+    d.m_a0 = 6; // anisotropic mode number
+    d.m_theta0 = 0; // orientation angle
+    d.m_L = 4; // latent heat
   }
 
   /// Time advancing
   Real time = 0.;
-  Real dt = 0.00000003; // time step
+  Real dt = 0.0001; // time step
   int m = 5000;
   RK4<Dendritic, DendriticGrowth, DendriticShift> integrator;
-  //MDWrite(d.m_phi);//debug
+  MDWrite(d.m_phi);
   for(int i=0; i<m; i++)
   {
     integrator.advance(time, dt, d);
     time = time + dt;
-    cout << "time = " << time << "  dt " << dt << endl;
-   MDWrite(d.m_phi);//debug
+    if ((i % 10) == 0)
+    {
+      MDWrite(d.m_phi);
+      cout << "time = " << time << "  dt " << dt << endl;
+    }
     if (time >= timeStop) 
       break;
   }

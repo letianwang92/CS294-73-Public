@@ -31,14 +31,13 @@ class Dendritic
 public:
   Dendritic();
   Dendritic(Box& a_box, RectMDArray<Real>& phi_int, RectMDArray<Real>& u_int);
-  bool isDefined();
   void increment(const DendriticShift& a_shift);
   bool m_isInitialized;
   Box m_box;
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;
 
-  // Constants
+  /// Constants
   Real m_h; // unit cell distance
   Real m_D; // thermal diffusion constant
   Real m_tau; // relaxiation time
@@ -49,6 +48,7 @@ public:
   Real m_mu; // modulation of interfacial width
   Real m_a0; // anisotropic mode number
   Real m_theta0; // orientation angle
+  Real m_L; // latent heat
 };
 
 
