@@ -12,7 +12,7 @@ ifeq ($(system),Darwin)
   CXX = clang++
 endif
 ifeq ($(CXX) , clang++)
-	CFLAGS += -stdlib=libc++ -mmacosx-version-min=10.10.5
+	CFLAGS += -stdlib=libc++
 endif
 
 CFLAGS += -I. -I$(HEADS) -I$(SOURCE)/Dendritic -I$(SOURCE)/RectArray -I$(SOURCE)/Timer -I$(SOURCE)/Writers -DDIM=$(DIM)
