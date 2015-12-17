@@ -36,7 +36,6 @@ int main()
     }
   }
   
-  
   // Calculate field results
   RectMDArray<Real> rLap(bInner); //result Laplacian
   RectMDArray<array<Real,DIM> > rGrad(bInner); //result Gradient
@@ -93,7 +92,6 @@ int main()
     }
   }
   
-  
   // Get the error
   Real maxLapE = 0;
   Real maxLapPE = 0;
@@ -140,6 +138,5 @@ int main()
   cout << "The max error of divergence field calculation when N=" << N << " is: " << maxDivE <<endl;
   cout << "The max error of divergence point calculation when N=" << N << " is: " << maxDivPE <<endl;
 
-  
   return 1;
 }
