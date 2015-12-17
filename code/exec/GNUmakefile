@@ -28,11 +28,13 @@ DEPENDENTFILE:= $(patsubst %.cpp, %.d, $(SRCFILES))
 
 all: GNUmakefile $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o Dendritic2D.exe
+	cd ../../documents/doxygenDocument/; make doxy
 
 clean:
 	rm *.o *.exe *.d *.vtk
 	
 realclean:
-	rm *.o *.exe *.d *.vtk $(OBJS) $(DEPENDENTFILE) 
-	
+	rm -f *.o *.exe *.d *.vtk $(OBJS) $(DEPENDENTFILE) 
+	cd ../../documents/doxygenDocument/; make clean
+
 -include $(OBJS:.o=.d)
