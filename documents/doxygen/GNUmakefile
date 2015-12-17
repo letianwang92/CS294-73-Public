@@ -7,4 +7,4 @@ view:
 	xdg-open doxygenDocumentation.html
 
 clean:
-	rm -r ./latex/ ./html/
+	rm -r ./latex/ ./html/ *.html

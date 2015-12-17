@@ -14,6 +14,7 @@
 #define DIM 2
 using namespace std;
 
+/// Class that specifies the right hand side of partial differential equations
 class DendriticGrowth
 {
 public:

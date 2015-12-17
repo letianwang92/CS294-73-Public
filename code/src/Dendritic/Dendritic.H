@@ -14,6 +14,8 @@
 using namespace std;
 
 class Dendritic;
+
+/// Class that saves the shift of field variables of each step.
 class DendriticShift
 {
 public:
@@ -26,6 +28,7 @@ public:
   void setToZero();
 };
 
+/// Class that saves the field variables and parameters of a dendritic growth problem.
 class Dendritic
 {
 public:
@@ -37,18 +40,17 @@ public:
   RectMDArray<Real> m_phi;
   RectMDArray<Real> m_u;
 
-  /// Constants
-  Real m_h; // unit cell distance
-  Real m_D; // thermal diffusion constant
-  Real m_tau; // relaxiation time
-  Real m_beta; // material parameter
-  Real m_eta; // material parameter
-  Real m_um; // melting temperature
-  Real m_W0; // initial interfacial width
-  Real m_mu; // modulation of interfacial width
-  Real m_a0; // anisotropic mode number
-  Real m_theta0; // orientation angle
-  Real m_L; // latent heat
+  Real m_h; ///< unit cell distance
+  Real m_D; ///< thermal diffusion constant
+  Real m_tau; ///< relaxiation time
+  Real m_beta; ///< material parameter
+  Real m_eta; ///< material parameter
+  Real m_um; ///< melting temperature
+  Real m_W0; ///< initial interfacial width
+  Real m_mu; ///< modulation of interfacial width
+  Real m_a0; ///< anisotropic mode number
+  Real m_theta0; ///< orientation angle
+  Real m_L; ///< latent heat
 };
 
 
