@@ -35,6 +35,6 @@ clean:
 	
 realclean:
 	rm -f *.o *.exe *.d *.vtk $(OBJS) $(DEPENDENTFILE) 
-	cd ../../documents/doxygenDocument/; rm -r ./latex/ ./html/ *.html *.db
+	cd ../../documents/doxygenDocument/; rm -rf ./latex/ ./html/ *.html *.db
 
 -include $(OBJS:.o=.d)
