@@ -28,13 +28,13 @@ DEPENDENTFILE:= $(patsubst %.cpp, %.d, $(SRCFILES))
 
 all: GNUmakefile $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o Dendritic2D.exe
-	cd ../../documents/doxygenDocument/; sh link.sh
+	cd ../../documents/doxygenDocument/; sh compile.sh
 
 clean:
 	rm *.o *.exe *.d *.vtk
 	
 realclean:
 	rm -f *.o *.exe *.d *.vtk $(OBJS) $(DEPENDENTFILE) 
-	cd ../../documents/doxygenDocument/; make clean
+	cd ../../documents/doxygenDocument/; rm -r ./latex/ ./html/ *.html *.db
 
 -include $(OBJS:.o=.d)
