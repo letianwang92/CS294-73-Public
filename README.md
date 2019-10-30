@@ -12,7 +12,7 @@ Crystal growth is a common phenomena in chemical engineering and manufacturing (
 
 A list of included components can be found at [here](https://github.com/letianwang92/CS294-73-Public/tree/master/code/include)
 
-[Dendritic Growth] (https://github.com/letianwang92/CS294-73-Public/tree/master/code/src/Dendritic)
+[Dendritic Growth](https://github.com/letianwang92/CS294-73-Public/tree/master/code/src/Dendritic)
 * Classes required for generating temperature and phase field grid, propagate the required values.
 
 [RectMDArray](https://github.com/letianwang92/CS294-73-Public/tree/master/code/src/RectArray)
